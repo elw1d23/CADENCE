@@ -14,12 +14,12 @@ from pathlib import Path
 from glob import glob
 from itertools import chain
 
-from audio_processor import AudioProcessor
-from feature_extraction import FeatureExtractor
-from normalisation import FeatureNormalizer
-from tcn_inference import TCNInference
-from post_processing import DetectionPostProcessor
-from detection_writer import DetectionWriter
+from .audio_processor import AudioProcessor
+from .feature_extraction import FeatureExtractor
+from .normalisation import FeatureNormalizer
+from .tcn_inference import TCNInference
+from .post_processing import DetectionPostProcessor
+from .detection_writer import DetectionWriter
 
 
 class PorpoiseDetector:
