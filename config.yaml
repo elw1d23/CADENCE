@@ -1,0 +1,56 @@
+# TCN Harbor Porpoise Detector Configuration File
+# Ellen White, 2025, University of Southampton
+# e.l.white@soton.ac.uk
+
+# Everything that is needed to run the inference pipeline is here
+# 
+# ===
+# PATHS (User configures these)
+# =====
+model_path: "/Users/elw1g13/Documents/Documents-UOSNOCS06234M/Project_MARLIN/HarbourPorpoise/TCN/TCN_Testing/porpoise_click_detection_pcen_tcn.onnx"
+normalization_params: "/Users/elw1g13/Documents/Documents-UOSNOCS06234M/Project_MARLIN/HarbourPorpoise/TCN/TCN_Testing/normalization_params_2025-07-21_11-23-46.mat"
+input_directory: "/Users/elw1g13/Documents/Documents-UOSNOCS06234M/Project_MARLIN/HarbourPorpoise/Final_TestData/Scotland/Acoustic"
+output_directory: "/Users/elw1g13/Documents/Documents-UOSNOCS06234M/Project_MARLIN/HarbourPorpoise/Final_TestData/Scotland/Acoustic/Detections"
+
+# ======
+# DETECTION METADATA
+# ======
+hydrophone_id: "67149847"  # User-defined hydrophone identifier
+# This gets printed in the detection file header so only needs changed if the unit changes
+
+# =======
+# DETECTION PARAMETERS (User adjustable)
+# =======
+threshold: 0.7                   # Detection threshold [0-1]
+gain_factor: 20                      # Audio gain in dB (default: 20 to enhance 
+min_duration: 0.005              # Minimum event duration in seconds
+max_gap: 1.000                   # Maximum gap to merge events in seconds
+remove_isolated: false           # Remove isolated single clicks
+
+# =======
+# OUTPUT OPTIONS
+# =======
+save_click_events: true          # Save raw click detections
+save_porpoise_events: true       # Save grouped porpoise events
+# Toggle this off if not doing an environmental monitoring project. Can simply run post_processing.py on the simple click output data anyways
+save_audacity_labels: true # option to export labels for importing to audacity, super handy for sanity checking performance
+verbose: true                    # Print progress messages
+
+# ===================
+# FEATURE EXTRACTION PARAMETERS
+# DO NOT CHANGE ANYTHING, THESE ARE TRAINED PARAMETERS
+# ===================
+window_size: 0.005               # Window size in seconds (5ms) - DONT CHANGE THIS
+overlap: 0.0                     # Overlap fraction (0 = no overlap) - DONT CHANGE THIS
+freq_range: [80000, 180000]      # Frequency range in Hz - DONT CHANGE THIS
+freq_bin_size: 1000              # Frequency bin size in Hz - DONT CHANGE THIS
+
+# =============
+# PCEN PARAMETERS : DO NOT CHANGE - Must match training exactly !!!!
+# ==============
+pcen:
+  alpha: 0.95
+  delta: 10
+  r: 0.25
+  epsilon: 1.0e-6
+  s: 0.95
